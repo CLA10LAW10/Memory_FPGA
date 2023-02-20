@@ -25,6 +25,7 @@ always_ff @(posedge clk)
       data_reg <= rom[addr];
    end else begin
       // fahrenheit to celsius
+      data_reg <= 0;
    end 
    
 assign data = data_reg;
