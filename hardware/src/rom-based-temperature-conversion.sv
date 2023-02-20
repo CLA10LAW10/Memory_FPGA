@@ -2,12 +2,13 @@
 module sync_rom
 (
  input  logic clk,
- input  logic [3:0] addr,
+ input  logic [7:0] addr,
+ input  logic unit,
  output logic [6:0] data
 );
 
 // signal declaration
-logic [6:0] rom [0:101]; // ascending range
+logic [6:0] rom [0:202]; // ascending range
 logic [6:0] data_reg;
 
 // load initial values from file led_pattern.txt
@@ -19,6 +20,12 @@ initial
 
 // body
 always_ff @(posedge clk)
-   data_reg <= rom[addr];
+   if (unit) begin
+      // celsius to fahrenheit. Input will be element output.
+      data_reg <= rom[addr];
+   end else begin
+      // fahrenheit to celsius
+   end 
+   
 assign data = data_reg;
 endmodule
