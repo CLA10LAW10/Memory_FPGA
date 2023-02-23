@@ -1,13 +1,15 @@
 module fifo
   #(
-   parameter DATA_WIDTH=8, // number of bits in a word
+   parameter DATA_WIDTH=4, // number of bits in a word
              ADDR_WIDTH=4  // number of address bits
   )
   (
    input  logic clk, reset,
    input  logic rd, wr,
    input  logic [DATA_WIDTH-1:0] w_data,
+   output logic almost_empty, almost_full,
    output logic empty, full,
+   output logic [ADDR_WIDTH+1:0] word_count,
    output logic [DATA_WIDTH-1:0] r_data
   );
 
