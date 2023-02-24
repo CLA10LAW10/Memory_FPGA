@@ -16,11 +16,10 @@ module fifo_tb();
 
 integer i;
 parameter CP = 8;
-parameter PERIOD = CP / 2;
 
 fifo #(.ADDR_WIDTH(ADDR_WIDTH),.DATA_WIDTH(DATA_WIDTH)) fifo_uut (.*);
 
-always #PERIOD clk = ~clk;
+always #(CP/2) clk = ~clk;
 
 initial 
 begin

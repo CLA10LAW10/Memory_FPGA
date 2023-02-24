@@ -1,28 +1,25 @@
 // Rom Based Temperature Conversion
-module sync_rom
+module rom_based_temperature_conversion
 (
- input  logic clk,
- input  logic [7:0] addr,
- input  logic unit,
- output logic [6:0] data
+ input  logic clk,               // Clock input
+ input  logic [7:0] temperature, // Temperature input
+ input  logic unit,              // 1 for Celsius input, 0 for Fahrenheit
+ output logic [7:0] data         // Covnerted temperature output
 );
 
 // signal declaration
-logic [6:0] rom [0:202]; // ascending range
-logic [6:0] data_reg;
+logic [7:0] rom [0:202];   // ROM, ascending range
+logic [7:0] data_reg;      // Temp data register
 
-// load initial values from file led_pattern.txt
-// content of led_pattern.txt:
-// 1000000 1111001 0100100 0110000 0011001 0010010 0000010 1111000
-// 0000000 0010000 0001000 0000011 1000110 0100001 0000110 0001110
+// load initial values from file temperature_conversion.txt
 initial
-   $readmemb("led_pattern.txt", rom);   // Will recognize white space or new lines as new elements within the .txt
+   $readmemb("temperature_conversion.txt", rom);   // Will recognize white space or new lines as new elements within the .txt
 
 // body
 always_ff @(posedge clk)
    if (unit) begin
       // celsius to fahrenheit. Input will be element output.
-      data_reg <= rom[addr];
+      data_reg <= rom[addr]; // 0-100 input will directly address to Fahrenheit output 
    end else begin
       // fahrenheit to celsius
       data_reg <= 0;
