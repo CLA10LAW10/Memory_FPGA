@@ -5,10 +5,10 @@ module rom_based_sign_magnitude_adder
     parameter DATA_WIDTH=4
 )
 (
-input  logic clk,               // Clock input
-input  logic [DATA_WIDTH-1:0] a, // Temperature input
-input  logic [DATA_WIDTH-1:0] b, // Temperature input
-output logic [DATA_WIDTH-1:0] sum         // Covnerted temperature output
+input  logic clk,                   // Clock input
+input  logic [DATA_WIDTH-1:0] a,    // Temperature input
+input  logic [DATA_WIDTH-1:0] b,    // Temperature input
+output logic [DATA_WIDTH-1:0] sum   // Covnerted temperature output
 );
 
 // signal declaration

@@ -5,7 +5,7 @@ module rom_based_temperature_conversion_tb();
 reg clk;
 reg [7:0] temperature;
 reg unit;
-wire [6:0] data;
+wire [7:0] data;
 
 integer i;
 parameter CP = 8;
@@ -29,12 +29,15 @@ unit = 0;
 end
 
 initial begin
-    #CP unit = 0;
-    #(10*CP)
     #CP unit = 1;
-    #CP temperature = 8'b0;
-    //for (i = 0; i < 101; i++)
-    //    #CP temperature = i;
+    for (i = 0; i < 101; i++)
+        #CP temperature = i;
+
+    #CP unit = 0;
+    for (i = 0; i < 213; i++)
+        #CP temperature = i;
+    #CP
+    $finish;
 end
 
 endmodule
