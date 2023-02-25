@@ -6,7 +6,7 @@ parameter DATA_WIDTH = 4;
 reg clk;               // Clock input
 reg [DATA_WIDTH-1:0] a; // Temperature input
 reg [DATA_WIDTH-1:0] b; // Temperature input
-wire [DATA_WIDTH-1:0] sum;         // Covnerted temperature output
+wire [DATA_WIDTH:0] sum;         // Covnerted temperature output
 
 integer i;
 parameter CP = 8;
@@ -17,7 +17,7 @@ always #(CP/2) clk = ~clk;
 
 initial 
 begin
-clk = 0;
+clk = 1;
 a = 0;
 b = 0;
 end
@@ -27,19 +27,27 @@ initial begin
 //        #CP a = i;
 //        for (i = 0; i < 2 ** DATA_WIDTH; i++)
 //           #CP b = i;
-    #CP a = 4'b0100;
-    #CP b = 4'b0001;
+    #CP
+    a = 4'b0100;
+    b = 4'b0001;
+    #CP
 
-    #CP a = 4'b0100;
-    #CP b = 4'b1001;
+    a = 4'b0100;
+    b = 4'b1001;
+    #CP
 
-    #CP a = 4'b1100;
-    #CP b = 4'b0001;
+    a = 4'b1100;
+    b = 4'b0001;
+    #CP
 
-    #CP a = 4'b1100;
-    #CP b = 4'b1001;
-
-    #CP $finish;
+    a = 4'b1100;
+    b = 4'b1001;
+    
+    #CP
+    a = 4'b0100;
+    b = 4'b0001;
+    
+    #(5*CP) $finish;
 end
 
 endmodule
