@@ -1,18 +1,20 @@
 `timescale 1ns / 1ps
 
-module rom_eight_bit_magnitude_adder_tb();
+module rom_16_bit_magnitude_adder_tb();
 
-parameter ADDR_WIDTH = 8;
-parameter DATA_WIDTH = 9;
-reg clk;               // Clock input
-reg [ADDR_WIDTH-1:0] a; // Temperature input
-reg [ADDR_WIDTH-1:0] b; // Temperature input
-wire [DATA_WIDTH-1:0] sum;         // Covnerted temperature output
+parameter DATA_WIDTH = 8;
+parameter ADDR_WIDTH = 16;
+reg                         clk;  // Clock input
+reg     [DATA_WIDTH-1:0]    a;    // A input
+reg     [DATA_WIDTH-1:0]    b;    // B input
+wire    [DATA_WIDTH:0]    data;   // Signed Magnitude output
 
 integer i;
 parameter CP = 8;
 
-rom_eight_bit_magnitude_adder #(.ADDR_WIDTH(ADDR_WIDTH),.DATA_WIDTH(DATA_WIDTH)) adder_sixteen_uut (.clk(clk),.a(a),.b(b),.sum(sum));
+//rom_eight_bit_magnitude_adder #(.ADDR_WIDTH(ADDR_WIDTH),.DATA_WIDTH(DATA_WIDTH)) adder_sixteen_uut (.clk(clk),.a(a),.b(b),.sum(sum));
+
+rom_16_based_sign_magnitude_adder #(.DATA_WIDTH(DATA_WIDTH),.ADDR_WIDTH(ADDR_WIDTH)) adder_sixteen_uut(.*);
 
 always #(CP/2) clk = ~clk;
 
