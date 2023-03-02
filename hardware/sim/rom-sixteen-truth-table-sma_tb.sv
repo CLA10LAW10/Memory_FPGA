@@ -31,15 +31,15 @@ initial begin
             #CP 
             a = i;
             b = j;
-            $display("%9b",sum);
+            $display("a%9bb",sum);
         end
     end
     #CP a = 0; b = 0;
-    $display("%9b",sum);
+    $display("%9b,",sum);
     #CP a = 0; b = 0;
-    $display("%9b",sum);
+    $display("%9b,",sum);
     #CP a = 0; b = 0;
-    $display("%9b",sum);
+    $display("%9b,",sum);
     #(2*CP) $finish;
 end
 

@@ -14,21 +14,27 @@ output logic [DATA_WIDTH:0]     sum     // Covnerted temperature output
 // signal declaration
 logic [DATA_WIDTH-1:0] temp;
 logic [DATA_WIDTH:0] sum_logic;
+logic a_zero;
+logic b_zero;
 
 always @(posedge clk)
 begin
     if (a[DATA_WIDTH-1] == b[DATA_WIDTH-1] ) begin
         temp <= a[DATA_WIDTH-2:0] + b[DATA_WIDTH-2:0];
         sum_logic <= {a[DATA_WIDTH-1],temp};
-    end else if (a[DATA_WIDTH-2:0] > b[DATA_WIDTH-2:0]) begin
+    end 
+    else if (a[DATA_WIDTH-2:0] > b[DATA_WIDTH-2:0]) begin
             temp <= a[DATA_WIDTH-2:0] - b[DATA_WIDTH-2:0];
             sum_logic <= {a[DATA_WIDTH-1:0],temp}; 
-    end else if (a[DATA_WIDTH-2:0] < b[DATA_WIDTH-2:0]) begin
+    end 
+    else if (a[DATA_WIDTH-2:0] < b[DATA_WIDTH-2:0]) begin
             temp <= b[DATA_WIDTH-2:0] - a[DATA_WIDTH-2:0];
             sum_logic <= {b[DATA_WIDTH-1:0],temp};
     end
 end
 
+assign a_zero = a[DATA_WIDTH-1];
+assign b_zero = b[DATA_WIDTH-1];
 assign sum = sum_logic;
 
 endmodule
