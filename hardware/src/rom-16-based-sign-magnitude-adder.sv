@@ -19,7 +19,9 @@ logic [15:0] addr;                              // Address
 // load initial values from file temperature_conversion.txt
 // Will recognize white space or new lines as new elements within the .txt
 initial
-   $readmemb("C:\Users\Clayton\Documents\CSUN\ECE524\Labs\Lab4\sp23-e524-lab4-mem-CLA10LAW10\hardware\src\8-bit-rom.txt", rom);
+    $readmemb("sixteen-bit-rom.txt", rom);
+    
+    
 
 // body
 always @(posedge clk)

@@ -7,14 +7,13 @@ parameter ADDR_WIDTH = 16;
 reg                         clk;  // Clock input
 reg     [DATA_WIDTH-1:0]    a;    // A input
 reg     [DATA_WIDTH-1:0]    b;    // B input
-wire    [DATA_WIDTH:0]    data;   // Signed Magnitude output
+wire    [DATA_WIDTH:0]    sum;   // Signed Magnitude output
 
-integer i;
 parameter CP = 8;
 
-//rom_eight_bit_magnitude_adder #(.ADDR_WIDTH(ADDR_WIDTH),.DATA_WIDTH(DATA_WIDTH)) adder_sixteen_uut (.clk(clk),.a(a),.b(b),.sum(sum));
+rom_eight_bit_magnitude_adder #(.ADDR_WIDTH(ADDR_WIDTH),.DATA_WIDTH(DATA_WIDTH)) adder_sixteen_uut (.clk(clk),.a(a),.b(b),.sum(sum));
 
-rom_16_based_sign_magnitude_adder #(.DATA_WIDTH(DATA_WIDTH),.ADDR_WIDTH(ADDR_WIDTH)) adder_sixteen_uut(.*);
+//rom_16_based_sign_magnitude_adder #(.DATA_WIDTH(DATA_WIDTH),.ADDR_WIDTH(ADDR_WIDTH)) adder_sixteen_uut(.*);
 
 always #(CP/2) clk = ~clk;
 
@@ -26,31 +25,28 @@ b = 0;
 end
 
 initial begin
-//    for (i = 0; i < 2 ** DATA_WIDTH; i++)
-//        #CP a = i;
-//        for (i = 0; i < 2 ** DATA_WIDTH; i++)
-//           #CP b = i;
+
     #CP
     a = 8'b00000001;
     b = 8'b00000010;
     #CP
 
     a = 8'b00000010;
-    b = 8'b00000100;
+    b = 8'b10000100;
     #CP
 
-    a = 8'b00000100;
+    a = 8'b10000100;
     b = 8'b00000001;
     #CP
 
-    a = 8'b00000010;
-    b = 8'b00000010;
+    a = 8'b10000010;
+    b = 8'b10000010;
     
     #CP
-    a = 8'b00000001;
-    b = 8'b00000001;
+    a = 8'b10111001;
+    b = 8'b01111001;
     
-   // #(5*CP) $finish;
+    #(2*CP) $finish;
 end
 
 endmodule
