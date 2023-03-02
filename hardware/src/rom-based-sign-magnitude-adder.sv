@@ -8,24 +8,13 @@ module rom_based_sign_magnitude_adder
 input  logic clk,                   // Clock input
 input  logic [DATA_WIDTH-1:0] a,    // Temperature input
 input  logic [DATA_WIDTH-1:0] b,    // Temperature input
-output logic [DATA_WIDTH:0] sum   // Covnerted temperature output
+output logic [DATA_WIDTH:0] sum     // Converted temperature output
 );
 
 // signal declaration
 logic [DATA_WIDTH+1:0] addr;
 logic [DATA_WIDTH:0] sum_logic;
-//logic [6:0] SAME_FOUR_BIT [0:63]; // ascending range
 logic [DATA_WIDTH:0] data_reg;
-
-// load initial values from file led_pattern.txt
-//initial
-//$readmemb("led_pattern.txt", rom);
-
-// body
-//always_ff @(posedge clk)
-//    data_reg <= rom[addr];
-
-//assign data = data_reg;
 
 always @(posedge clk)
 begin

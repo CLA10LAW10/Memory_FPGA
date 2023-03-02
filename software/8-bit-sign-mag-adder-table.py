@@ -1,4 +1,4 @@
-def add_7bit_numbers(num1, num2):
+def add_8bit_numbers(num1, num2):
     # Convert the 8-bit numbers to decimal
     decimal1 = int(num1, 2)
     decimal2 = int(num2, 2)
@@ -33,11 +33,11 @@ def add_7bit_numbers(num1, num2):
 binary_numbers = [bin(i)[2:].zfill(8) for i in range(256)]
 
 # Open the output file
-with open('8-bit-rom.txt', 'w') as f:
+with open('sixteen-bit-rom.txt', 'w') as f:
     # Loop through all possible combinations of binary numbers
     for i in range(len(binary_numbers)):
         for j in range(len(binary_numbers)):
             # Add the two binary numbers
-            result = add_7bit_numbers(binary_numbers[i], binary_numbers[j])
+            result = add_8bit_numbers(binary_numbers[i], binary_numbers[j])
             # Write the result to the output file
             f.write(result + '\n')

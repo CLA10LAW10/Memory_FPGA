@@ -46,6 +46,10 @@ initial begin
     a = 8'b10111001;
     b = 8'b01111001;
     
+    #CP
+    a = 8'b11111111;
+    b = 8'b11111111;
+    
     #(2*CP) $finish;
 end
 
