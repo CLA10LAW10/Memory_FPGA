@@ -14,36 +14,23 @@ output logic [DATA_WIDTH:0] sum     // Converted temperature output
 // signal declaration
 logic [DATA_WIDTH+1:0] addr;
 logic [DATA_WIDTH:0] sum_logic;
-logic [DATA_WIDTH:0] data_reg;
+logic [DATA_WIDTH-1:0] diff_data_reg;
+logic [DATA_WIDTH-1:0] same_data_reg;
 
 always @(posedge clk)
 begin
-    if (a[DATA_WIDTH-1] == 1 && b[DATA_WIDTH-1] == 1) begin
-        data_reg <= SAME_FOUR_BIT[addr];
-        sum_logic <= {1,data_reg};
-    end else if (a[DATA_WIDTH-1] == 1 && b[DATA_WIDTH-1] == 0) begin
-        if (a[DATA_WIDTH-2:0] > b[DATA_WIDTH-2:0]) begin
-            data_reg <= DIFF_FOUR_BIT[addr];
-            sum_logic <= {1,data_reg};
-        end else begin
-            data_reg <= DIFF_FOUR_BIT[addr];
-            sum_logic <= {0,data_reg};
-        end
-    end else if (a[DATA_WIDTH-1] == 0 && b[DATA_WIDTH-1] == 1) begin
-        if (a[DATA_WIDTH-2:0] > b[DATA_WIDTH-2:0]) begin
-            data_reg <= DIFF_FOUR_BIT[addr];
-            sum_logic <= {0,data_reg};
-        end else begin
-            data_reg <= DIFF_FOUR_BIT[addr];
-            sum_logic <= {1,data_reg};
-        end
-    end else begin
-        data_reg <= SAME_FOUR_BIT[addr];
-        sum_logic <= {0,data_reg};
-    end
+    if (a[DATA_WIDTH-1] == b[DATA_WIDTH-1]) begin
+        sum_logic <= {a[DATA_WIDTH-1],same_data_reg};
+    end else if (a[DATA_WIDTH-2:0] > b[DATA_WIDTH-2:0]) begin
+        sum_logic <= {a[DATA_WIDTH-1],diff_data_reg}; 
+    end else if (a[DATA_WIDTH-2:0] < b[DATA_WIDTH-2:0]) begin
+        sum_logic <= {b[DATA_WIDTH-1],diff_data_reg};
+    end 
 end
 
 assign addr = {a[DATA_WIDTH-2:0], b[DATA_WIDTH-2:0]};
+assign same_data_reg = SAME_FOUR_BIT[addr];
+assign diff_data_reg = DIFF_FOUR_BIT[addr];
 assign sum = sum_logic;
 
 logic [3:0] SAME_FOUR_BIT [0:63]='{

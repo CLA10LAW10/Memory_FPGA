@@ -8,7 +8,7 @@ reg [DATA_WIDTH-1:0] a; // Temperature input
 reg [DATA_WIDTH-1:0] b; // Temperature input
 wire [DATA_WIDTH:0] sum;         // Covnerted temperature output
 
-integer i;
+//integer i;
 parameter CP = 8;
 
 rom_based_sign_magnitude_adder #(.DATA_WIDTH(DATA_WIDTH)) adder_uut (.*);
