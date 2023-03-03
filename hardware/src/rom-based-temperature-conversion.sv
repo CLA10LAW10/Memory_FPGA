@@ -8,12 +8,7 @@ module rom_based_temperature_conversion
 );
 
 // signal declaration
-//logic [7:0] rom [0:202];   // ROM, ascending range
 logic [7:0] data_reg;      // Temp data register
-
-// load initial values from file temperature_conversion.txt
-//initial
-  // $readmemb("temperature_conversion.txt", rom);   // Will recognize white space or new lines as new elements within the .txt
 
 // body
 always_ff @(posedge clk)

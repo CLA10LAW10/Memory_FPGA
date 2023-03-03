@@ -12,13 +12,6 @@ parameter CP = 8;
 
 rom_based_temperature_conversion ROM_uut (.*);
 
-//initial 
-//begin
-//PART A: INITIALIZE MEMORY
-//$readmemb("temperature_conversion.txt", ROM_uut.rom, 8);
-//$readmemb("temperature_conversion.txt", rom);
-//end
-
 always #(CP/2) clk = ~clk;
 
 initial 

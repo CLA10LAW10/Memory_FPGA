@@ -38,7 +38,6 @@ initial begin
     #(2*CP) wr = 0;
     #CP rd = 1;
     #(16 * CP) 
-    //$finish;
 
     #CP rd = 0;
     #CP reset = 1;
