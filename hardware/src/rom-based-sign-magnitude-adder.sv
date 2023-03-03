@@ -6,9 +6,9 @@ module rom_based_sign_magnitude_adder
 )
 (
 input  logic clk,                   // Clock input
-input  logic [DATA_WIDTH-1:0] a,    // Temperature input
-input  logic [DATA_WIDTH-1:0] b,    // Temperature input
-output logic [DATA_WIDTH:0] sum     // Converted temperature output
+input  logic [DATA_WIDTH-1:0] a,    // a input
+input  logic [DATA_WIDTH-1:0] b,    // b input
+output logic [DATA_WIDTH:0] sum     //  SMA output
 );
 
 // signal declaration
