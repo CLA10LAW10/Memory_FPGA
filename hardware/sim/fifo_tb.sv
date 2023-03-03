@@ -44,15 +44,7 @@ initial begin
     #CP reset = 1;
     #CP reset = 0;
 
-    #CP wr = 1;
-    for (i = 0; i < DATA_WIDTH; i++)
-        #CP w_data = i;
-    
-    #CP rd = 1;
-    for (i = 0; i < DATA_WIDTH; i++)
-        #CP w_data = i;
-    #CP wr = 0;
-    #(5 * CP)
+    #CP 
     $finish;
 end
 

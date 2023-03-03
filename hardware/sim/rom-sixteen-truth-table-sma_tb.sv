@@ -2,7 +2,7 @@
 
 module rom_sixteen_truth_table_tb();
 
-parameter DATA_WIDTH = 8;
+parameter DATA_WIDTH = 4;
 reg                         clk;    // Clock input
 reg     [DATA_WIDTH-1:0]    a;      // Temperature input
 reg     [DATA_WIDTH-1:0]    b;      // Temperature input
@@ -31,15 +31,19 @@ initial begin
             #CP 
             a = i;
             b = j;
-            $display("a%9bb",sum);
+            //$display("a%9bb",sum);
+            $display("8'h%2h,",sum);
         end
     end
     #CP a = 0; b = 0;
-    $display("%9b,",sum);
+    //$display("%9b,",sum);
+    $display("8'h%2h,",sum);
     #CP a = 0; b = 0;
-    $display("%9b,",sum);
+    //$display("%9b,",sum);
+    $display("8'h%2h,",sum);
     #CP a = 0; b = 0;
-    $display("%9b,",sum);
+    //$display("%9b,",sum);
+    $display("8'h%2h,",sum);
     #(2*CP) $finish;
 end
 

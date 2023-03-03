@@ -1,21 +1,4 @@
-`timescale 1ns / 1ps
-
-module rom_based_sign_magnitude_adder
-#(
-    parameter DATA_WIDTH=4
-)
-(
-input  logic clk,                   // Clock input
-input  logic [DATA_WIDTH-1:0] a,    // Temperature input
-input  logic [DATA_WIDTH-1:0] b,    // Temperature input
-output logic [DATA_WIDTH:0] sum     // Converted temperature output
-);
-
-// signal declaration
-logic [(DATA_WIDTH*2)-1:0] addr;
-logic [DATA_WIDTH:0] sum_logic;
-logic [DATA_WIDTH:0] ROM_FOUR_BIT [0:255]={
-    8'h00,
+8'h00,
 8'h01,
 8'h02,
 8'h03,
@@ -271,15 +254,3 @@ logic [DATA_WIDTH:0] ROM_FOUR_BIT [0:255]={
 8'h1c,
 8'h1d,
 8'h1e
-};
-
-always @(posedge clk)
-begin
-    sum_logic <= ROM_FOUR_BIT[addr];
-end
-
-assign addr = {a, b};
-assign sum = sum_logic;
-
-
-endmodule
